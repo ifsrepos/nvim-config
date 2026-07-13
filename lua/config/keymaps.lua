@@ -74,6 +74,15 @@ vim.keymap.set("v", ">", ">gv", {
   desc = "Indent right and keep selection",
 })
 
+vim.keymap.set("n", "<leader>f", function()
+  require("conform").format({
+    async = true,
+    lsp_format = "fallback",
+  })
+end, {
+  desc = "Format buffer",
+})
+
 --------------------------------------------------------------------------------
 -- Windows
 --------------------------------------------------------------------------------
