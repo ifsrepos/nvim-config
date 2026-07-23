@@ -1,3 +1,23 @@
+local function grep_visual()
+  local start = vim.fn.getpos("'<")
+  local finish = vim.fn.getpos("'>")
+
+  local lines = vim.api.nvim_buf_get_text(
+    0,
+    start[2] - 1,
+    start[3] - 1,
+    finish[2] - 1,
+    finish[3],
+    {}
+  )
+
+  local text = table.concat(lines, " ")
+
+  require("telescope.builtin").live_grep({
+    default_text = text,
+  })
+end
+
 return {
   "nvim-telescope/telescope.nvim",
 
@@ -10,37 +30,38 @@ return {
   keys = {
     {
       "<C-p>",
-      function()
-        require("telescope.builtin").find_files()
-      end,
+      require("telescope.builtin").find_files,
       desc = "Find files",
     },
+
     {
       "<leader>fg",
-      function()
-        require("telescope.builtin").live_grep()
-      end,
+      require("telescope.builtin").live_grep,
       desc = "Live grep",
     },
+
+    {
+      "<leader>fg",
+      grep_visual,
+      mode = "x",
+      desc = "Grep selection",
+    },
+
     {
       "<leader>fr",
-      function()
-        require("telescope.builtin").oldfiles()
-      end,
+      require("telescope.builtin").oldfiles,
       desc = "Find recent files",
     },
+
     {
       "<leader>fb",
-      function()
-        require("telescope.builtin").buffers()
-      end,
+      require("telescope.builtin").buffers,
       desc = "Find buffers",
     },
+
     {
       "<leader>fh",
-      function()
-        require("telescope.builtin").help_tags()
-      end,
+      require("telescope.builtin").help_tags,
       desc = "Help tags",
     },
   },
@@ -55,7 +76,7 @@ return {
         },
       },
 
-      sorting_trategy = "ascending",
+      sorting_strategy = "ascending",
 
       prompt_prefix = "> ",
       selection_caret = "> ",
@@ -68,6 +89,7 @@ return {
     },
   },
 }
+
 
 -- In-Telescope commands
 -- Ctrl-v    Open in vertical split
