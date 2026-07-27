@@ -1,17 +1,9 @@
+local visual = require("utils.visual")
+
 local function grep_visual()
-  local start = vim.fn.getpos("'<")
-  local finish = vim.fn.getpos("'>")
+  local text = visual.get_selection()
 
-  local lines = vim.api.nvim_buf_get_text(
-    0,
-    start[2] - 1,
-    start[3] - 1,
-    finish[2] - 1,
-    finish[3],
-    {}
-  )
-
-  local text = table.concat(lines, " ")
+  text = text:gsub("\n", " ")
 
   require("telescope.builtin").live_grep({
     default_text = text,
