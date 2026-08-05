@@ -2,7 +2,7 @@ local M = {}
 
 function M.get_selection()
   local start = vim.fn.getpos("v")
-  local finish = fim.fn.getpos(".")
+  local finish = vim.fn.getpos(".")
 
   if start[2] > finish[2] then
       if (start[2] == finish[2] and start[3] > finish[3]) then
