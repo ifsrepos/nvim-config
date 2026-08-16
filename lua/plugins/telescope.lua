@@ -22,13 +22,17 @@ return {
   keys = {
     {
       "<C-p>",
-      require("telescope.builtin").find_files,
+      function()
+				require("telescope.builtin").find_files()
+			end,
       desc = "Find files",
     },
 
     {
       "<leader>fg",
-      require("telescope.builtin").live_grep,
+      function()
+				require("telescope.builtin").live_grep()
+			end,
       desc = "Live grep",
     },
 
@@ -41,19 +45,25 @@ return {
 
     {
       "<leader>fr",
-      require("telescope.builtin").oldfiles,
+      function()
+				require("telescope.builtin").oldfiles()
+			end,
       desc = "Find recent files",
     },
 
     {
       "<leader>fb",
-      require("telescope.builtin").buffers,
+      function()
+				require("telescope.builtin").buffers()
+			end,
       desc = "Find buffers",
     },
 
     {
       "<leader>fh",
-      require("telescope.builtin").help_tags,
+      function()
+				require("telescope.builtin").help_tags()
+			end,
       desc = "Help tags",
     },
   },
