@@ -11,7 +11,7 @@ vim.opt.expandtab = true          -- Use spaces instead of tabs
 vim.opt.tabstop = 2               -- How tabs are displayed
 vim.opt.softtabstop = 2           -- How many "spaces" writes <Tab>
 vim.opt.shiftwidth = 2            -- Indent size
-vim.opt.smartindent = true        -- Smart indent
+vim.opt.smartindent = false       -- Smart indent
 vim.opt.undofile = true           -- Keeps undo after Neovim close
 vim.opt.clipboard = "unnamedplus" -- Use system clipboard
 

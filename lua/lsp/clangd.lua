@@ -1,5 +1,3 @@
-local capabilities = require("blink.cmp").get_lsp_capabilities()
-
 return {
   cmd = { "clangd" },
 
@@ -14,6 +12,6 @@ return {
     "compile_flags.txt",
   },
 
-  capabilities = capabilities,
+  capabilities = require("blink.cmp").get_lsp_capabilities(),
 }
 

@@ -1,6 +1,5 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  branch = "main",
 
   build = ":TSUpdate",
 
@@ -12,7 +11,9 @@ return {
   opts = {
     ensure_installed = {
       "c",
+      "cpp",
       "lua",
+      "python",
       "vim",
       "vimdoc",
       "query",

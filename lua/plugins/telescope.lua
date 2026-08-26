@@ -23,7 +23,7 @@ return {
     {
       "<C-p>",
       function()
-				require("telescope.builtin").find_files()
+        require("telescope.builtin").find_files()
 			end,
       desc = "Find files",
     },

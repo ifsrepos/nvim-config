@@ -79,11 +79,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<leader>d", vim.diagnostic.open_float,
         "Show diagnostics")
 
-    map("n", "[d", vim.diagnostic.goto_prev,
-        "Previous diagnostic")
+    map("n", "[d",
+      function()
+        vim.diagnostic.jump({ count = -1, float = true })
+      end, "Previous diagnostic")
 
-    map("n", "]d", vim.diagnostic.goto_next,
-        "Next diagnostic")
+    map("n", "]d",
+      function()
+        vim.diagnostic.jump({ count = 1, float = true })
+      end, "Next diagnostic")
   end
 })
 
