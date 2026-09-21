@@ -1,6 +1,9 @@
 return {
   "nvim-treesitter/nvim-treesitter",
 
+  branch = "master",
+  main = "nvim-treesitter.configs",
+
   build = ":TSUpdate",
 
   event = {
