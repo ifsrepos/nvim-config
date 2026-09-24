@@ -5,6 +5,7 @@ vim.opt.cursorline = true         -- Highlights cursor line
 vim.opt.signcolumn = "yes"        -- Reserve a space for warning, errors, git changes, etc.
 vim.opt.scrolloff = 8             -- Keeps 8 lines around cursor when scrolling
 vim.opt.colorcolumn = "80"        -- Line max width set to 80 characters
+  vim.opt.colorcolumn = "100"        -- Line max width set to 100 characters
 
 -- Edition
 vim.opt.expandtab = true          -- Use spaces instead of tabs
