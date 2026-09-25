@@ -2,7 +2,7 @@
 # ==============================================================================
 # DESCRIPTION: Installs system dependencies for the Neovim configuration
 #              (C/C++, Python, treesitter, lazygit, delta).
-# SYSTEMS:     Linux (Debian 13/Ubuntu 24.04+), Windows (WSL/MSYS2)
+# SYSTEMS:     Linux (Debian 13/Ubuntu 24.04+)
 # USAGE:       ./install.sh [--check-only]
 # ==============================================================================
 set -uo pipefail
@@ -18,6 +18,7 @@ readonly NC='\033[0m'
 
 readonly LINUX_APT_PACKAGES=(
   fd-find
+  ripgrep
   clangd-19
   clang-format-19
   cmake
@@ -140,25 +141,6 @@ install_lazygit_config() {
   ln -sf "$source" "$target"
 }
 
-# ── Platform detection ───────────────────────────────────────────────
-detect_platform() {
-  local system
-
-  system=$(uname -s 2>/dev/null)
-
-  case "$system" in
-    Linux*)
-      echo "linux"
-      ;;
-    MINGW*|MSYS*|CYGWIN*)
-      echo "windows"
-      ;;
-    *)
-      echo "unknown"
-      ;;
-  esac
-}
-
 # ── Verify all tools ────────────────────────────────────────────────
 check_all() {
   local errors=0
@@ -206,12 +188,9 @@ ${errors} tool(s) not found.${NC}"
 
 # ── Main ─────────────────────────────────────────────────────────────
 main() {
-  local platform
-  platform=$(detect_platform)
 
   echo ""
   echo -e "${BOLD}=== Neovim dependency installer ===${NC}"
-  echo "  Detected platform: ${platform}"
   echo ""
 
   # Safety guard
@@ -225,27 +204,10 @@ main() {
     exit $?
   fi
 
-  # Install according to platform
-  case "$platform" in
-    linux)
-      install_apt
-      install_npm_global
-      install_pipx
-      install_lazygit_config
-      ;;
-    windows)
-      warn "Windows platform detected (WSL/MSYS2)."
-      warn "For native Windows, use install.ps1."
-      warn "Under WSL, the Linux installer is used."
-      install_apt
-      install_npm_global
-      install_pipx
-      install_lazygit_config
-      ;;
-    *)
-      error "Unsupported platform: $platform"
-      ;;
-  esac
+  install_apt
+  install_npm_global
+  install_pipx
+  install_lazygit_config
 
   check_all
 }
