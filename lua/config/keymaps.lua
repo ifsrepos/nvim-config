@@ -74,13 +74,35 @@ vim.keymap.set("v", ">", ">gv", {
   desc = "Indent right and keep selection",
 })
 
-vim.keymap.set("n", "<leader>f", function()
+vim.keymap.set("n", "<leader>F", function()
   require("conform").format({
     async = true,
     lsp_format = "fallback",
   })
 end, {
   desc = "Format buffer",
+})
+
+vim.keymap.set("x", "<leader>ta", function()
+  local start_row = vim.fn.line("v")
+  local end_row = vim.fn.line(".")
+
+  if start_row > end_row then
+    start_row, end_row = end_row, start_row
+  end
+
+  local pattern = vim.fn.input("Tabularize /")
+
+  if pattern ~= "" then
+    vim.cmd(string.format(
+      "%d,%dTabularize /%s",
+      start_row,
+      end_row,
+      pattern
+    ))
+  end
+end, {
+  desc = "Align selection",
 })
 
 --------------------------------------------------------------------------------
