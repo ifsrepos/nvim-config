@@ -94,12 +94,7 @@ vim.keymap.set("x", "<leader>ta", function()
   local pattern = vim.fn.input("Tabularize /")
 
   if pattern ~= "" then
-    vim.cmd(string.format(
-      "%d,%dTabularize /%s",
-      start_row,
-      end_row,
-      pattern
-    ))
+    vim.cmd(string.format("%d,%dTabularize /%s", start_row, end_row, pattern))
   end
 end, {
   desc = "Align selection",
@@ -147,4 +142,14 @@ vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<CR>", {
 
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<CR>", {
   desc = "Increase window width",
+})
+
+--------------------------------------------------------------------------------
+-- Lazygit
+--------------------------------------------------------------------------------
+
+local lazygit = require("utils.lazygit")
+
+vim.keymap.set("n", "<leader>G", lazygit.open, {
+  desc = "Open Lazygit",
 })
