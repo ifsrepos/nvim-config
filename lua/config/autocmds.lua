@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd("FileType", {
   desc = "Uses 4 spaces indent to edit python files",
   group = user_autocmds,
   pattern = "python",
-  callback = function()
+  callback = function(event)
     vim.opt_local.expandtab = true
     vim.opt_local.tabstop = 4
     vim.opt_local.softtabstop = 4
@@ -88,6 +88,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
       function()
         vim.diagnostic.jump({ count = 1, float = true })
       end, "Next diagnostic")
+  end
+})
+
+local treesitter_group = vim.api.nvim_create_augroup("Treesitter", {
+  clear = true,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = treesitter_group,
+  callback = function(event)
+    pcall(vim.treesitter.start, event.buf)
   end
 })
 

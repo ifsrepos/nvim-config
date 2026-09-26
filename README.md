@@ -21,7 +21,7 @@ Personal Neovim configuration, managed with [lazy.nvim](https://github.com/folke
     ├── lsp/
     │   ├── init.lua        # Enables and wires up LSP servers
     │   ├── clangd.lua      # clangd (C/C++) config
-    │   └── pytight.lua     # Python LSP config
+    │   └── pyright.lua     # Python LSP config
     ├── plugins/
     │   ├── blink.lua       # Completion (blink.cmp)
     │   ├── conform.lua     # Formatting
