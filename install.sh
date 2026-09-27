@@ -23,9 +23,12 @@ readonly LINUX_APT_PACKAGES=(
   clang-format-19
   cmake
   git-delta
+  shellcheck
+  shfmt
 )
 
 readonly NPM_GLOBAL_TOOLS=(
+  bash-language-server
   pyright
   tree-sitter-cli
 )

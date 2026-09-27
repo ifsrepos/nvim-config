@@ -17,6 +17,8 @@ return {
         },
       },
       python = { "ruff_format" },
+      bash = { "shfmt" },
+      sh = { "shfmt" },
     },
     format_on_save = {
       timeout = 500,
