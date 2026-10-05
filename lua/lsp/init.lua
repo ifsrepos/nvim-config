@@ -6,3 +6,6 @@ vim.lsp.enable("pyright")
 
 vim.lsp.config("bashls", require("lsp.bashls"))
 vim.lsp.enable("bashls")
+
+vim.lsp.config("ruff", require("lsp.ruff"))
+vim.lsp.enable("ruff")
