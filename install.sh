@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ==============================================================================
 # DESCRIPTION: Installs system dependencies for the Neovim configuration
-#              (C/C++, Python, treesitter, lazygit, delta).
+#              (C/C++, Python, treesitter, lazygit, delta, pdftotext).
 # SYSTEMS:     Linux (Debian 13/Ubuntu 24.04+)
 # USAGE:       ./install.sh [--check-only]
 # ==============================================================================
@@ -25,6 +25,7 @@ readonly LINUX_APT_PACKAGES=(
   git-delta
   shellcheck
   shfmt
+  poppler-utils
 )
 
 readonly NPM_GLOBAL_TOOLS=(
@@ -166,6 +167,7 @@ check_all() {
   check_command "lazygit"      "lazygit --version | head -1" || ((errors++))
   check_command "delta"        "delta --version"        || ((errors++))
   check_command "tree-sitter"  "tree-sitter --version"  || ((errors++))
+  check_command "pdftotext"    "pdftotext -v 2>&1 | head -1" || ((errors++))
 
   echo ""
 

@@ -25,7 +25,8 @@ Personal Neovim configuration, managed with [lazy.nvim](https://github.com/folke
     ├── plugins/
     │   ├── blink.lua       # Completion (blink.cmp)
     │   ├── conform.lua     # Formatting
-    │   ├── nord.lua        # Colorscheme
+    │   ├── melange.lua     # Colorscheme
+    │   ├── pdf.lua         # PDF reading (vim-pdf + pdftotext)
     │   ├── surround.lua    # Surround text objects
     │   ├── tabular.lua     # Text alignment
     │   ├── telescope.lua   # Fuzzy finder
@@ -46,7 +47,8 @@ Personal Neovim configuration, managed with [lazy.nvim](https://github.com/folke
    This installs system packages (clangd, clang-format, cmake, fd, git-delta),
    npm tools (pyright, tree-sitter-cli), and pip tools (ruff) required by the
    LSP and treesitter setup, and symlinks `lazygit/config.yml` into
-   `~/.config/lazygit/config.yml`.
+   `~/.config/lazygit/config.yml`. It also installs `poppler-utils`, which
+   provides the `pdftotext` binary used to read PDFs.
 
    Use `--check-only` to verify which tools are already installed without
    making any changes:
@@ -63,3 +65,6 @@ Personal Neovim configuration, managed with [lazy.nvim](https://github.com/folke
 - Supported platforms: Linux (Debian/Ubuntu) and Windows via WSL/MSYS2.
 - `lazy-lock.json` pins plugin versions; commit changes to it when
   intentionally updating plugins.
+- Opening a `.pdf` file replaces the buffer with its text extraction
+  (`pdftotext -layout`) and marks it as non-writable, so the text can be
+  selected and yanked but the PDF itself is never modified.
