@@ -95,10 +95,38 @@ local treesitter_group = vim.api.nvim_create_augroup("Treesitter", {
   clear = true,
 })
 
+-- Languages already reported, to warn only once per session
+local treesitter_warned = {}
+
+local function treesitter_warn(lang, message)
+  if treesitter_warned[lang] then
+    return
+  end
+
+  treesitter_warned[lang] = true
+  vim.notify(("treesitter (%s): %s"):format(lang, message),
+    vim.log.levels.WARN)
+end
+
 vim.api.nvim_create_autocmd("FileType", {
+  desc = "Enables treesitter highlighting when the parser is installed",
   group = treesitter_group,
   callback = function(event)
-    pcall(vim.treesitter.start, event.buf)
+    local lang = vim.treesitter.language.get_lang(
+      vim.bo[event.buf].filetype)
+
+    -- Filetypes without parser are left to the syntax highlighting
+    if not lang or not vim.treesitter.language.add(lang) then
+      return
+    end
+
+    local ok, err = pcall(vim.treesitter.start, event.buf, lang)
+
+    if not ok then
+      treesitter_warn(lang, err)
+    elseif not vim.treesitter.query.get(lang, "highlights") then
+      treesitter_warn(lang, "no highlights query, run :TSUpdate " .. lang)
+    end
   end
 })
 
