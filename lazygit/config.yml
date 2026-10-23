@@ -1,8 +1,7 @@
 git:
-  paging:
-    colorArg: always
-    pager: delta --paging=never
-
+  diffRenderers:
+    - colorArg: always
+      command: delta --paging=never
 os:
   editPreset: nvim-remote
 customCommands:
