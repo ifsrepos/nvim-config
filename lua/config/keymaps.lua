@@ -153,3 +153,11 @@ local lazygit = require("utils.lazygit")
 vim.keymap.set("n", "<leader>G", lazygit.open, {
   desc = "Open Lazygit",
 })
+
+--------------------------------------------------------------------------------
+-- Markdown Preview
+--------------------------------------------------------------------------------
+vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", {
+  desc = "Toggle Markdown preview (Mermaid)"
+})
+
