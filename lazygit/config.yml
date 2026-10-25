@@ -5,7 +5,11 @@ git:
 os:
   editPreset: nvim-remote
 customCommands:
-  - key: 'D'
+  - key: 'X'
     command: 'nvim -c "DiffviewOpen {{.SelectedLocalCommit.Hash}}^!"'
     context: 'commits'
+    subprocess: true
+  - key: 'X'
+    command: 'nvim -c "DiffviewOpen"'
+    context: 'files'
     subprocess: true
