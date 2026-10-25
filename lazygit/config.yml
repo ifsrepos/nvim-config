@@ -8,4 +8,4 @@ customCommands:
   - key: 'D'
     command: 'nvim -c "DiffviewOpen {{.SelectedLocalCommit.Hash}}^!"'
     context: 'commits'
-    output: terminal
+    subprocess: true
