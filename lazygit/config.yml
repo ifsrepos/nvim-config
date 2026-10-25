@@ -1,7 +1,7 @@
 git:
   diffRenderers:
-    - colorArg: always
-      command: delta --paging=never
+    - type: extDiff
+      command: difft --color=always --background={{colorScheme}} --width={{width}} --context={{diffContext}}
 os:
   editPreset: nvim-remote
 customCommands:
