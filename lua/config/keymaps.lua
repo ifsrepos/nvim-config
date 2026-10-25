@@ -154,10 +154,13 @@ vim.keymap.set("n", "<leader>G", lazygit.open, {
   desc = "Open Lazygit",
 })
 
+vim.keymap.set("n", "<leader>Q", ":DiffviewClose<CR>:q<CR>", {
+  desc = "Close Diffview",
+})
+
 --------------------------------------------------------------------------------
 -- Markdown Preview
 --------------------------------------------------------------------------------
 vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", {
-  desc = "Toggle Markdown preview (Mermaid)"
+  desc = "Toggle Markdown preview (Mermaid)",
 })
-
